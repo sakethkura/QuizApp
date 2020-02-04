@@ -1,5 +1,6 @@
 package com.kurasaketh.quizapp;
 
+import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
@@ -26,6 +27,7 @@ public class MainActivity extends AppCompatActivity {
                 Log.i("testButton", "hi dad!");
                 Log.i("testButton", "Hello: " + responseText.getText().toString());
                 displayText.setText(displayText.getText().toString() + " " + responseText.getText().toString());
+                submitButton.setBackgroundColor(Color.rgb(10, 50, 90));
             }
         });
         responseText.setOnFocusChangeListener(new View.OnFocusChangeListener() {
