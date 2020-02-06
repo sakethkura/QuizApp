@@ -11,36 +11,42 @@ import android.widget.TextView;
 
 public class MainActivity extends AppCompatActivity {
     Button submitButton;
-    EditText responseText;
-    TextView displayText;
+    Button color;
+    EditText bodypartText;
+    EditText nounText;
+    EditText vegetableText;
+    TextView madlibstext;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         submitButton = findViewById(R.id.clickButton);
-        responseText = findViewById(R.id.responseEditText);
-        displayText = findViewById(R.id.textBox);
-        submitButton.setOnClickListener(new View.OnClickListener(){
+        bodypartText = findViewById(R.id.bodypartEditText);
+        nounText = findViewById(R.id.nounEditText);
+        vegetableText = findViewById(R.id.vegetableEditText);
+        madlibstext = findViewById(R.id.madlib);
+        color = findViewById(R.id.colorButton);
+        submitButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                if(nounText.getText().toString().equals("") || vegetableText.getText().toString().equals("") || bodypartText.getText().toString().equals("")){
+                    madlibstext.setText("Please fill out all of the boxes.");
+                }
+
+                else {
                 System.out.println("Hello mom");
                 Log.i("testButton", "hi dad!");
-                Log.i("testButton", "Hello: " + responseText.getText().toString());
-                displayText.setText(displayText.getText().toString() + " " + responseText.getText().toString());
-                submitButton.setBackgroundColor(Color.rgb(10, 50, 90));
+                Log.i("testButton", "submitted madlib: ");
+                madlibstext.setText("Here are some things to do at recess. 1) Start a game of " + bodypartText.getText().toString() +
+                                "-ball. 2) Put a " + nounText.getText().toString() + " in someone's lunch bag. 3) Start a " +
+                        vegetableText.getText().toString() + " fight in the lunch room.");
             }
-        });
-        responseText.setOnFocusChangeListener(new View.OnFocusChangeListener() {
-            @Override
-            public void onFocusChange(View v, boolean hasFocus) {
-                if(!hasFocus){
-                    if(responseText.getText().toString().equals("TJ")){
-                        displayText.setText("TJ Rocks");
-                        responseText.setText("");
-                        responseText.setHint("That's a good name.");
-                    }
-                }
-            }
-        });
+        }});
+    }
+    public void colorchanger(View v){
+        Log.i("testButton", "color button pressed!");
+        submitButton.setBackgroundColor(Color.rgb(20, 90, 60));
+        color.setBackgroundColor(Color.rgb(20, 90, 60));
+        madlibstext.setTextColor(Color.rgb(10, 50, 90));
     }
 }
